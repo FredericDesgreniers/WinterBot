@@ -7,6 +7,7 @@ package winterbot.irc.events;
 
 import winterbot.events.Event;
 import winterbot.events.EventType;
+import winterbot.network.irc.IrcServer;
 
 /**
  *
@@ -17,10 +18,12 @@ public class IrcMessageEvent extends IrcEvent{
 
     public final String user;
     public final String message;
-    public IrcMessageEvent(EventType type,String channel,String user,String message) {
+    public final IrcServer server;
+    public IrcMessageEvent(EventType type,IrcServer server,String channel,String user,String message) {
         super(type,channel);
         this.user=user;
         this.message=message;
+        this.server=server;
     }
     
 }

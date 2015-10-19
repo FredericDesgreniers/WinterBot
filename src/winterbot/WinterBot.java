@@ -7,6 +7,7 @@ package winterbot;
 
 
 import javafx.application.Application;
+import winterbot.commands.IrcCommands;
 import winterbot.irc.events.IrcMessageListener;
 import winterbot.irc.events.IrcStatusListener;
 import winterbot.irc.events.IrcSubscriberListener;
@@ -32,11 +33,13 @@ public class WinterBot{
     }
     private IrcClient irc;
     private Debug debug;
+    private IrcCommands ircCommands;
     public WinterBot() throws Exception
     { 
         instance=this;
         irc=new IrcClient(this);
-        irc.addServer(new IrcServer("twitch",irc,new IrcUser("winter_squirrel",SENSITIVE.TWITCH_AUTH),"irc.twitch.tv",6667));
+        
+        irc.addServer(new IrcServer("twitch",irc,new IrcUser("winter_squirrels_bot",SENSITIVE.TWITCH_AUTH),"irc.twitch.tv",6667));
         new Thread(new Runnable(){
 
             @Override
@@ -46,13 +49,15 @@ public class WinterBot{
             
         }).start();
         
-
+         ircCommands=  new IrcCommands(this);
          debug = new Debug();
         irc.registerListener((IrcStatusListener) debug);
         irc.registerListener((IrcMessageListener) debug);
         irc.registerListener((IrcSubscriberListener)debug);
-        
+        irc.registerListener((IrcMessageListener)ircCommands);
         irc.connect();
+        
+        
     }
     public IrcClient getIrc()
     {

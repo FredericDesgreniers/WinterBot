@@ -67,6 +67,6 @@
 }
 .selectedMenuBtn{
     -fx-background-color:#535353;
-    -fx-border-color:transparent red transparent transparent;
+    -fx-border-color:transparent red #909090 transparent;
     -fx-border-size:1;
 }

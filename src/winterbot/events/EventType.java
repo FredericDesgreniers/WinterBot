@@ -10,5 +10,5 @@ package winterbot.events;
  * @author Fred
  */
 public enum EventType {
-    IRC_CHAT,IRC_NEWSUB,IRC_STATE_CONNECT
+    IRC_CHAT,IRC_NEWSUB,IRC_RESUB,IRC_STATE_CONNECT
 }

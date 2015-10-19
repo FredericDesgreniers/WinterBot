@@ -14,9 +14,17 @@ import winterbot.events.EventType;
  */
 public class IrcSubscriberEvent extends IrcEvent{
     public final String subscriberName;
+    public final int monthsSubbed;
     public IrcSubscriberEvent(EventType type,String channel,String subName) {
+        this(type,channel,subName,0);
+        
+        
+    }
+    public IrcSubscriberEvent(EventType type,String channel,String subName,int monthsSubbed)
+    {
         super(type,channel);
         this.subscriberName=subName;
+        this.monthsSubbed = monthsSubbed;
     }
     
 }

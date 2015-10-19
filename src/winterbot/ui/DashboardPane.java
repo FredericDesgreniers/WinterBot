@@ -37,11 +37,19 @@ public class DashboardPane extends GridPane implements IrcSubscriberListener {
     }
     @Override
     public void handle(IrcSubscriberEvent event) {
-        if(event.type==EventType.IRC_NEWSUB)
+        String lastSubOld = lastSub;
+        switch(event.type)
         {
-            lastSub = event.subscriberName;
-            updateLastSub(lastSub);
+            case IRC_NEWSUB:
+                lastSub = event.subscriberName;
+                break;
+            case IRC_RESUB:
+                lastSub = event.subscriberName+"("+event.monthsSubbed+")";
+                 
         }
+        if(!lastSub.equalsIgnoreCase(lastSubOld))
+        updateLastSub(lastSub);
+        
     }
     private void updateLastSub(String s)
     {
