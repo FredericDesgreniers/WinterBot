@@ -38,7 +38,8 @@ public class MainPane extends BorderPane{
         chat = new ChatPane(this,new VBox());
         dashboard = new DashboardPane(this);
         
-        this.setCenter(chat);
+        this.setCenter(dashboard);
+        menu.getDashboard().getStyleClass().add("selectedMenuBtn");
        
         
     }

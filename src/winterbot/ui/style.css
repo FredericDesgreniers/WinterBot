@@ -1,6 +1,8 @@
 @font-face {
-    font-family: 'Roboto';
-    src: url(https://fonts.googleapis.com/css?family=Roboto);
+      font-family: "Roboto Bold";
+  font-style: normal;
+  font-weight: 400;
+    src: local('Roboto Bold'), local('Roboto-Bold'),url('Roboto-bold.ttf') format('truetype');
 }
 .mainPane{
     -fx-background-color:#444444;
@@ -17,7 +19,7 @@
 .chatScroll {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color:#444444;
+    -fx-background:#444444;
 }
 
 .chatScroll:focused {
@@ -36,6 +38,7 @@
 -fx-padding:10 10 0 0;
 -fx-border-color: transparent  transparent gray transparent;
 -fx-border-size:1;
+
 }
 .chatUser{
     -fx-text-fill: white;
@@ -45,12 +48,13 @@
 }
 .menuPane{
     -fx-background-color:#262626;
+    -fx-font-family: 'Roboto Bold';
 }
 .menuButton{
     -fx-background-color:transparent;
     -fx-text-fill: white;
     -fx-padding:30;
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Roboto Bold";
     -fx-font-size:20;
     -fx-cursor:hand;
 

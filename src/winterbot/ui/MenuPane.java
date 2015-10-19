@@ -56,4 +56,12 @@ public class MenuPane extends VBox{
         dashBtn.getStyleClass().remove("selectedMenuBtn");
         chatBtn.getStyleClass().remove("selectedMenuBtn");
     }
+    public Button getChat()
+    {
+        return chatBtn;
+    }
+    public Button getDashboard()
+    {
+        return dashBtn;
+    }
 }

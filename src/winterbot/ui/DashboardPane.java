@@ -2,6 +2,8 @@ package winterbot.ui;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import winterbot.events.EventType;
 import winterbot.irc.events.IrcSubscriberEvent;
@@ -17,10 +19,10 @@ import winterbot.irc.events.IrcSubscriberListener;
  *
  * @author Fred
  */
-public class DashboardPane extends VBox implements IrcSubscriberListener {
+public class DashboardPane extends GridPane implements IrcSubscriberListener {
     MainPane main;
     String lastSub;
-    Label lastSubLabel;
+    VBox lastSubsList;
     public DashboardPane(MainPane main)
     {
         
@@ -28,9 +30,9 @@ public class DashboardPane extends VBox implements IrcSubscriberListener {
         this.main=main;
         main.getWinter().getIrc().registerListener(this);
         lastSub="";
-        lastSubLabel = new Label("No subscriber this session");
-        lastSubLabel.getStyleClass().add("subscriberLabel");
-        this.getChildren().add(lastSubLabel);
+        lastSubsList=new VBox();
+
+        this.add(lastSubsList,0,0);
         
     }
     @Override
@@ -38,19 +40,19 @@ public class DashboardPane extends VBox implements IrcSubscriberListener {
         if(event.type==EventType.IRC_NEWSUB)
         {
             lastSub = event.subscriberName;
-            updateLastSub();
+            updateLastSub(lastSub);
         }
     }
-    private void updateLastSub()
+    private void updateLastSub(String s)
     {
                 Platform.runLater(new Thread(new Runnable() {
 
             @Override
             public void run() {
                 
-
+                    lastSubsList.getChildren().add(new Label(s));
             }
         }));
-        lastSubLabel.setText("Lastest subscriber: "+lastSub);
+        
     }
 }

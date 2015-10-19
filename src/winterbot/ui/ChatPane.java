@@ -13,7 +13,9 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import winterbot.irc.events.IrcMessageEvent;
 import winterbot.irc.events.IrcMessageListener;
 
@@ -39,6 +41,7 @@ public class ChatPane extends ScrollPane implements IrcMessageListener{
             this.getChildren().add(chat);
             setFitToWidth(true);
             new Thread(new updater()).start();
+
  
         }
         
