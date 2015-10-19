@@ -99,12 +99,19 @@ public class IrcServer implements Runnable{
                             writer.write("PONG "+line.substring(5)+"\r\n");
                         }else
                         {
-                            handleMessage(line);
+                            String messageLine=line;
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    handleMessage(messageLine);
+                                }
+                            }).start();
                         }
                     }
                 }catch(Exception e)
                 {
-                    
+                    e.printStackTrace();
                 }
             }
         }else
@@ -120,6 +127,8 @@ public class IrcServer implements Runnable{
         {
             String[] info = m1[1].split(" ");
             String channel = info[2];
+            if(m1.length>2)
+            {
             String message = m1[2];
             String user=info[0].split("!")[0];
             if(user.equalsIgnoreCase("twitchnotify"))
@@ -143,7 +152,10 @@ public class IrcServer implements Runnable{
                 client.sendEvent(messageEvent);
                 
             }
+            }
+            
         }else
+              
         {
              System.out.println(m);
         }
