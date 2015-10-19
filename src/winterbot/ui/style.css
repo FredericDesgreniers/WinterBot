@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url(https://fonts.googleapis.com/css?family=Roboto);
+}
+.mainPane{
+    -fx-background-color:#444444;
+}
+
+
+
+.list-cell:even:filled { /* <=== changed to even */
+    -fx-background-color: #444444;
+}
+
+.list-cell:odd:filled {
+
+    -fx-background-color: #575757;
+}
+.list-cell:even { /* <=== changed to even */
+    -fx-background-color:#444444;
+}
+
+.list-cell:odd {
+
+    -fx-background-color:#444444;
+}
+.chatPane{
+    -fx-background-insets: 0 ;
+    -fx-background-color:#444444;
+}
+.chatLine{
+-fx-font-size:20;
+}
+.chatUser{
+    -fx-text-fill: white;
+}
+.chatMessage{
+    -fx-text-fill: white;
+}
+.menuPane{
+    -fx-background-color:#262626;
+}
+.menuButton{
+    -fx-background-color:transparent;
+    -fx-text-fill: white;
+    -fx-padding:30;
+    -fx-font-family: "Roboto";
+    -fx-font-size:20;
+    -fx-cursor:hand;
+
+    -fx-border-color: transparent transparent #909090 transparent;
+    -fx-border-width:1;
+}
+.menuButton:hover{
+    -fx-background-color:#575757;
+    
+}
