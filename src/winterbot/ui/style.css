@@ -5,24 +5,27 @@
 .mainPane{
     -fx-background-color:#444444;
 }
-
-
-
-.list-cell:even:filled { /* <=== changed to even */
-    -fx-background-color: #444444;
+.dashboard{
+    -fx-padding:10;
+}
+.dashboard Label{
+    -fx-text-fill:white;
+    -fx-font-size:30;
 }
 
-.list-cell:odd:filled {
 
-    -fx-background-color: #575757;
-}
-.list-cell:even { /* <=== changed to even */
+.chatScroll {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
     -fx-background-color:#444444;
 }
 
-.list-cell:odd {
+.chatScroll:focused {
+    -fx-background-insets: 0;
+}
 
-    -fx-background-color:#444444;
+.chatScroll .corner {
+    -fx-background-insets: 0;
 }
 .chatPane{
     -fx-background-insets: 0 ;
@@ -30,6 +33,9 @@
 }
 .chatLine{
 -fx-font-size:20;
+-fx-padding:10 10 0 0;
+-fx-border-color: transparent  transparent gray transparent;
+-fx-border-size:1;
 }
 .chatUser{
     -fx-text-fill: white;
@@ -54,4 +60,9 @@
 .menuButton:hover{
     -fx-background-color:#575757;
     
+}
+.selectedMenuBtn{
+    -fx-background-color:#535353;
+    -fx-border-color:transparent red transparent transparent;
+    -fx-border-size:1;
 }

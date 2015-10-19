@@ -28,7 +28,7 @@ public class Debug implements IrcFullListener{
     @Override
     public void handle(IrcStatusEvent event) {
         if(event.type == EventType.IRC_STATE_CONNECT)
-        event.server.joinChannel("#kevinmartin987 ");
+        event.server.joinChannel("#iwilldominate ");
     }
 
     @Override

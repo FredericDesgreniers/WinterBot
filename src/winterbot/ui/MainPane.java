@@ -5,12 +5,14 @@
  */
 package winterbot.ui;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ScrollBar;
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import winterbot.WinterBot;
 
@@ -22,17 +24,19 @@ public class MainPane extends BorderPane{
     private WinterBot winter;
     private MenuPane menu;
     private ChatPane chat;
+    private DashboardPane dashboard;
     public MainPane(WinterBot winter)
     {
-        this.getStyleClass().add("mainPane");
-        this.getStylesheets().add(this.getClass().getResource("style.css").toString());
+        this.getStyleClass().add("mainPane"); 
+        if(ClassLoader.getSystemResource("/winterbot/ui/style.css") == null)System.out.println("dssssadas");
+        this.getStylesheets().add(this.getClass().getResource("/winterbot/ui/style.css").toString());
         this.winter = winter;
         menu = new MenuPane(this);
         this.setLeft(menu);
     
 
-chat = new ChatPane(this);
-
+        chat = new ChatPane(this,new VBox());
+        dashboard = new DashboardPane(this);
         
         this.setCenter(chat);
        
@@ -42,4 +46,30 @@ chat = new ChatPane(this);
     {
         return winter;
     }
+    public void displayChat()
+    {
+        Platform.runLater(new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                setCenter(chat);
+
+               // if(getItems().size()>50)getItems().remove(0);
+            }
+        }));
+        
+    }
+    public void displayDashboard()
+    {
+        Platform.runLater(new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                setCenter(dashboard);
+
+            }
+        }));
+        
+    }
+    
 }

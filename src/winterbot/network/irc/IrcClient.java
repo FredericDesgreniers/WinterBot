@@ -90,8 +90,10 @@ public class IrcClient {
     }
     public void sendEvent(IrcMessageEvent ev)
     {
+       
         for(IrcMessageListener hnd:messageListeners)
         {
+             
             hnd.handle(ev);
         }
     }
