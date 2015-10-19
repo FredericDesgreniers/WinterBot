@@ -18,6 +18,7 @@ import winterbot.events.EventType;
 import winterbot.irc.events.IrcMessageEvent;
 import winterbot.irc.events.IrcStatusEvent;
 import winterbot.irc.events.IrcSubscriberEvent;
+import winterbot.test.Debug;
 
 /**
  *
@@ -108,6 +109,7 @@ public class IrcServer implements Runnable{
             }
         }else
             System.out.println("Thread stopped, socket "+this+" not connected!");
+        System.out.println("Thread stopped, socket "+this+" not connected!");
     }
     public void handleMessage(String m)
     {
@@ -123,17 +125,23 @@ public class IrcServer implements Runnable{
             if(user.equalsIgnoreCase("twitchnotify"))
             {
                 String name = message.split(" ")[0];
-                if(message.contains("month"))
+                if(message.contains("months"))
                 {
-                    IrcSubscriberEvent resubEvent = new IrcSubscriberEvent(EventType.IRC_RESUB,channel,name,Integer.valueOf(message.split(" ")[4]));
+                    System.out.println("RESUB");
+                    IrcSubscriberEvent resubEvent = new IrcSubscriberEvent(EventType.IRC_RESUB,channel,name,Integer.valueOf(message.split(" ")[3]));
+                    client.sendEvent(resubEvent);
+                }else
+                {
+                    IrcSubscriberEvent subEvent = new IrcSubscriberEvent(EventType.IRC_NEWSUB,channel,name);
+                    client.sendEvent(subEvent);
                 }
                 
-                IrcSubscriberEvent subEvent = new IrcSubscriberEvent(EventType.IRC_NEWSUB,channel,name);
-                client.sendEvent(subEvent);
+                
             }else
             {
                 IrcMessageEvent messageEvent =new IrcMessageEvent(EventType.IRC_CHAT,this,channel,user,message);
                 client.sendEvent(messageEvent);
+                
             }
         }else
         {
@@ -172,15 +180,15 @@ public class IrcServer implements Runnable{
         }
        
         
-        new Thread(this).run();
+        new Thread(this).start();
     }
     public synchronized void sendMessage(String channel,String message)
     {
-        
+        if(Debug.PREVENT_INTERACTION)return;
         try {
             writer.write("PRIVMSG "+channel+" :"+message+"\r\n");
             writer.flush();
-            System.out.println(channel);
+
         } catch (IOException ex) {
 
         }

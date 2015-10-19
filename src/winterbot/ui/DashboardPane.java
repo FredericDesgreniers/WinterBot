@@ -37,7 +37,9 @@ public class DashboardPane extends GridPane implements IrcSubscriberListener {
     }
     @Override
     public void handle(IrcSubscriberEvent event) {
-        String lastSubOld = lastSub;
+        
+        System.out.println("NEW SUB "+event.subscriberName+" for "+event.monthsSubbed);
+
         switch(event.type)
         {
             case IRC_NEWSUB:
@@ -45,20 +47,23 @@ public class DashboardPane extends GridPane implements IrcSubscriberListener {
                 break;
             case IRC_RESUB:
                 lastSub = event.subscriberName+"("+event.monthsSubbed+")";
+                break;
                  
         }
-        if(!lastSub.equalsIgnoreCase(lastSubOld))
-        updateLastSub(lastSub);
+
+        updateSub(lastSub);
+
         
     }
-    private void updateLastSub(String s)
+    private void updateSub(String s)
     {
                 Platform.runLater(new Thread(new Runnable() {
 
             @Override
             public void run() {
                 
-                    lastSubsList.getChildren().add(new Label(s));
+                    lastSubsList.getChildren().add(0,new Label(s));
+                    while(lastSubsList.getChildren().size()>10)lastSubsList.getChildren().remove(10);
             }
         }));
         

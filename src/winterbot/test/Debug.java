@@ -19,7 +19,7 @@ import winterbot.irc.events.IrcSubscriberListener;
  * @author Fred
  */
 public class Debug implements IrcFullListener{
-
+    public static boolean PREVENT_INTERACTION = true;
     @Override
     public void handle(IrcMessageEvent event) {
 
@@ -28,7 +28,7 @@ public class Debug implements IrcFullListener{
     @Override
     public void handle(IrcStatusEvent event) {
         if(event.type == EventType.IRC_STATE_CONNECT)
-        event.server.joinChannel("#winter_squirrel ");
+        event.server.joinChannel("#lirik ");
     }
 
     @Override

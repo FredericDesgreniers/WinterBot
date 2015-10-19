@@ -26,7 +26,7 @@ import winterbot.irc.events.IrcMessageListener;
 public class ChatPane extends ScrollPane implements IrcMessageListener{
     private MainPane main;
     private boolean scrollBot=false;
-    private boolean names=false;
+    private boolean names=true;
     private VBox chat;
         public ChatPane(MainPane main, VBox chat)
         {
@@ -60,7 +60,6 @@ public class ChatPane extends ScrollPane implements IrcMessageListener{
                
                while(chat.getChildren().size()>50)chat.getChildren().remove(0);
                scrollBot=true;
-               
             }
         }));
         }
